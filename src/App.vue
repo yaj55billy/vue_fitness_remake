@@ -1,14 +1,18 @@
 <template>
-  <!-- <toasts></toasts> -->
+  <Toast />
   <router-view></router-view>
 </template>
 
 <script>
+import Toast from "@/components/Toast.vue";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { onMounted } from "vue";
 
 export default {
+  components: {
+    Toast,
+  },
   setup() {
     onMounted(() => {
       AOS.init();
