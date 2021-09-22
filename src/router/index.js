@@ -5,6 +5,7 @@ import About from "../views/front/About.vue";
 import Qa from "../views/front/Qa.vue";
 import Contact from "../views/front/Contact.vue";
 import Products from "../views/front/Products.vue";
+import Product from "../views/front/Product.vue";
 import Error from "../views/Error.vue";
 
 const routes = [
@@ -37,6 +38,11 @@ const routes = [
         name: "Products",
         component: Products,
       },
+      {
+        path: "product/:id",
+        name: "Product",
+        component: Product,
+      }
     ],
   },
   {

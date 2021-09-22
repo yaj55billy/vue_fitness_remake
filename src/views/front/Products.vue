@@ -101,10 +101,10 @@ export default {
     const productsTemp = ref([]);
     const nowProducts = ref([]);
     const nowCategory = ref("");
-    const getProducts = (num = 1) => {
-      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products?page=${num}`;
-      apiGetProducts(url)
+    const getProducts = () => {
+      apiGetProducts()
         .then((res) => {
+          console.log(res.data.data);
           productsTemp.value = res.data.data;
           nowProducts.value = res.data.data;
         })
@@ -122,13 +122,13 @@ export default {
     });
 
     const addToCart = (id, quantity = 1) => {
-      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`;
+      
       const cart = {
         product: id,
         quantity,
       };
 
-      apiPostAddCart(url, cart)
+      apiPostAddCart(cart)
         .then(() => {
           store.dispatch("getCarts");
           store.commit("setNoticeMessage", "商品已成功加入購物車");
