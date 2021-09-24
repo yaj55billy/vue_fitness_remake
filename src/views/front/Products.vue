@@ -102,15 +102,17 @@ export default {
     const nowProducts = ref([]);
     const nowCategory = ref("");
     const getProducts = () => {
+      store.commit("setLoadingState", true);
       apiGetProducts()
         .then((res) => {
-          console.log(res.data.data);
+          store.commit("setLoadingState", false);
           productsTemp.value = res.data.data;
           nowProducts.value = res.data.data;
         })
         .catch(() => {
           productsTemp.value = [];
           nowProducts.value = [];
+          store.commit("setLoadingState", false);
         });
     };
 
@@ -122,7 +124,8 @@ export default {
     });
 
     const addToCart = (id, quantity = 1) => {
-      
+      store.commit("setLoadingState", true);
+
       const cart = {
         product: id,
         quantity,
@@ -130,11 +133,13 @@ export default {
 
       apiPostAddCart(cart)
         .then(() => {
+          store.commit("setLoadingState", false);
           store.dispatch("getCarts");
           store.commit("setNoticeMessage", "商品已成功加入購物車");
           // this.isLoading = false;
         })
         .catch((error) => {
+          store.commit("setLoadingState", false);
           console.log("加入購物車失敗");
           store.commit("setNoticeMessage", error.response.data.errors[0]);
           // this.isLoading = false;

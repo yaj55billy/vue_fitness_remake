@@ -4,6 +4,7 @@ export default createStore({
   state: {
     carts: [],
     noticeMessage: "",
+    loadingState: false,
   },
   mutations: {
     setCarts(state, payload) {
@@ -11,6 +12,9 @@ export default createStore({
     },
     setNoticeMessage(state, payload) {
       state.noticeMessage = payload;
+    },
+    setLoadingState(state, payload) {
+      state.loadingState = payload;
     },
   },
   actions: {
@@ -32,6 +36,9 @@ export default createStore({
     },
     noticeMessage(state) {
       return state.noticeMessage;
+    },
+    loadingState(state) {
+      return state.loadingState;
     },
   },
 });

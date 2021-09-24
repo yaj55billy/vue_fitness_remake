@@ -6,6 +6,7 @@ import Qa from "../views/front/Qa.vue";
 import Contact from "../views/front/Contact.vue";
 import Products from "../views/front/Products.vue";
 import Product from "../views/front/Product.vue";
+import Cart from "../views/front/Cart.vue";
 import Error from "../views/Error.vue";
 
 const routes = [
@@ -42,7 +43,12 @@ const routes = [
         path: "product/:id",
         name: "Product",
         component: Product,
-      }
+      },
+      {
+        path: "cart",
+        name: "Cart",
+        component: Cart,
+      },
     ],
   },
   {
